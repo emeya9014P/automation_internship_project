@@ -11,20 +11,43 @@ def browser_init(context):
     :param context: Behave context
     """
 
-    options = Options()
-    options.add_argument("--disable-blink-features=AutomationControlled")  # 봇 흔적 지우기
-    options.add_argument("--incognito")  # 시크릿 모드로 켜서 청정한 상태 유지
-    options.add_argument(
-        "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36")
+    browser_type = "chrome" # test browser를 여기서 정함`
 
-    context.driver = webdriver.Chrome(options=options)
+    if browser_type == "chrome":
+        options = Options()
+        options.add_argument("--disable-blink-features=AutomationControlled")  # 봇 흔적 지우기
+        options.add_argument("--incognito")  # 시크릿 모드로 켜서 청정한 상태 유지
+        options.add_argument(
+            "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36")
 
-    context.driver.maximize_window()
+    # 🚀 [Chrome Headless Mode] 활성화 및 창 크기 고정
+        options.add_argument("--headless")
+        options.add_argument("--window-size=1920,1080")  # 화면을 안 그리는 대신 해상도를 가상으로 고정해 줌
+
+        context.driver = webdriver.Chrome(options=options)
+
+        # when testing in headless mode: below code should be commented out.
+        # context.driver.maximize_window()
+
+    elif browser_type == "firefox":
+
+    # 🦊 [Firefox Headless Mode]  설정
+    #     from selenium.webdriver.firefox.options import Options as FirefoxOptions
+    #
+    #     firefox_options = FirefoxOptions()
+    #     firefox_options.add_argument("--headless")
+    #     firefox_options.add_argument("--width=1920")
+    #     firefox_options.add_argument("--height=1080")
+    #
+    #     context.driver = webdriver.Firefox(options=firefox_options)
+
+    # when testing in headless mode: below should be commented out.
+        context.driver.maximize_window()
+
     context.driver.implicitly_wait(4)
 
     context.product_search_page = ProductSearchPage(context.driver)
     context.off_plan_page = OffPlanPage(context.driver)
-
 
 def before_scenario(context, scenario):
     print('\nStarted scenario: ', scenario.name)
