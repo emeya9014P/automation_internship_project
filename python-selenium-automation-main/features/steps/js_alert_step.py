@@ -1,0 +1,20 @@
+from behave import when, then
+
+@when('Click on JavaScript Alerts link')
+def click_javascript_alerts_link(context):
+    context.js_alert_page.click_javascript_alerts_link()
+
+
+@when('Click on "Click for JS Alert" button')
+def click_click_for_js_alert_button(context):
+    context.js_alert_page.click_click_for_js_alert_button()
+
+
+@then('Click "Okay" button in the alert window')
+def click_okay_button(context):
+    context.js_alert_page.click_okay_button()
+
+
+@then('Verify result "{text}" shown')
+def verify_result_text_shown(context, text):
+    context.js_alert_page.verify_result_text_shown(text)
