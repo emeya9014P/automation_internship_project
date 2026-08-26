@@ -1,4 +1,4 @@
-# 🚀 Python Selenium BDD Test Automation Framework
+# 🚀 Python Selenium & API Test Automation Framework
 
 Automated End-to-End (E2E) UI, API, Integration testing suite built with **Python**, **Selenium WebDriver**, and **Behave (BDD)** framework.
 
