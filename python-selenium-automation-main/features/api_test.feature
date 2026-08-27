@@ -1,3 +1,4 @@
+@api
 Feature: ReqRes API CRUD Test
     Verify the CRUD operations of ReqRes API
     So that I can ensure user data management works as expected

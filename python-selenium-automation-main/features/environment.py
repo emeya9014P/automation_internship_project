@@ -90,9 +90,18 @@ def browser_init(context):
     context.actionchain_page = ActionChainPage(context.driver)
     context.file_upload_download_page = FileUploadDownloadPage(context.driver)
 
+
 def before_scenario(context, scenario):
-    print('\nStarted scenario: ', scenario.name)
-    browser_init(context)
+    # 'api' 태그가 있는 테스트는 웹 브라우저를 켜지 않음
+    if "api" in scenario.tags or "api" in scenario.feature.tags:
+        return
+
+    # 웹 UI 테스트일 때만 Chrome 실행 (CI 환경용 headless 옵션 포함)
+    options = webdriver.ChromeOptions()
+    options.add_argument('--headless')
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-dev-shm-usage')
+    context.driver = webdriver.Chrome(options=options)
 
 
 def before_step(context, step):
