@@ -31,4 +31,5 @@ jobs:
     # 4. Behave API 테스트 실행
     - name: Run Behave API Tests
       run: |
-        behave -D pythonpath=python-selenium-automation-main features/api_test.feature
+        cd python-selenium-automation-main
+        behave features/api_test.feature
