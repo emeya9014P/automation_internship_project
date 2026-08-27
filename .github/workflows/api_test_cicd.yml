@@ -31,4 +31,4 @@ jobs:
     # 4. API 테스트 스크립트 실행
     - name: Run API Tests
       run: |
-        python tests/test_api.py
+        python python-selenium-automation-main/test_api.py
