@@ -3,24 +3,26 @@ from behave import when, then
 
 BASE_URL = "https://reqres.in"
 
-@when('I send a GET request to "/api/users?page=2"')
+BASE_URL = "https://reqres.in"
+
+@when('I send a GET request to "{endpoint}"')
 def step_impl(context, endpoint):
     context.response = requests.get(BASE_URL + endpoint)
 
 
-@when('I send a POST request to "/api/users" with name "Eme" and job "QA Automation Engineer"')
+@when('I send a POST request to "{endpoint}" with name "{name}" and job "{job}"')
 def step_impl(context, endpoint, name, job):
     payload = {"name": name, "job": job}
     context.response = requests.post(BASE_URL + endpoint, json=payload)
 
 
-@when('I send a PUT request to "/api/users/2" with name "Eme" and job "Senior QA Automation Engineer"')
+@when('I send a PUT request to "{endpoint}" with name "{name}" and job "{job}"')
 def step_impl(context, endpoint, name, job):
     payload = {"name": name, "job": job}
     context.response = requests.put(BASE_URL + endpoint, json=payload)
 
 
-@when('I send a DELETE request to "/api/users/2"')
+@when('I send a DELETE request to "{endpoint}"')
 def step_impl(context, endpoint):
     context.response = requests.delete(BASE_URL + endpoint)
 
