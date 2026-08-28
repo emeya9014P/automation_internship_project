@@ -28,7 +28,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install requests behave selenium webdriver-manager
 
-    # 4. Behave 전체 테스트 실행
+    # 4. Behave 전체 테스트 실행 
     - name: Run Behave Tests
       run: |
-        behave features/
+        PYTHONPATH=. behave features/
