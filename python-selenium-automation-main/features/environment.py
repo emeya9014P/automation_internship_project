@@ -20,6 +20,7 @@ def browser_init(context):
     """
     :param context: Behave context
     """
+    # CI/CD Test Update
     # ⚙️ 테스트 실행 환경 설정 ("chrome", "chrome_mobile", "chrome_headless", "firefox", "firefox_headless")
     if os.getenv('CI'):
         browser_type = "chrome_headless"
