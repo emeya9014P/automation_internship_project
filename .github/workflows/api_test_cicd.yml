@@ -28,7 +28,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install requests behave selenium webdriver-manager
 
-    # 4. Behave 전체 테스트 실행 
-    - name: Run Behave Tests
+    # 4. Behave API 테스트 실행
+    - name: Run Behave API Tests
+      working-directory: ./python-selenium-automation-main
+      env:
+        PYTHONPATH: .
       run: |
-        PYTHONPATH=. behave features/
+        behave features/api_test.feature
