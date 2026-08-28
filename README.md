@@ -54,3 +54,10 @@ Automated RESTful API test suite built with Python's `requests` library to valid
 2. **Execute the test script**
    python test_api.py
    
+## 🔄 CI/CD Pipeline (GitHub Actions)
+
+- **Automated API & UI Testing**: Built a CI/CD automation pipeline using GitHub Actions to trigger test execution automatically upon every code push.
+- **Headless Browser Execution**: Configured `features/environment.py` with environment detection (`os.getenv('CI')`) to automatically execute UI tests in `chrome_headless` mode within the CI server.
+- **Module & Path Resolution**: Resolved `ModuleNotFoundError` in isolated CI runners by configuring `PYTHONPATH` and dynamically inserting the project root into `sys.path`.
+- **Automated Regression Testing**: Ensured code quality and prevented regression defects by validating existing test suites on clean virtual runners before merging.
+
