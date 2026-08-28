@@ -21,7 +21,10 @@ def browser_init(context):
     :param context: Behave context
     """
     # ⚙️ 테스트 실행 환경 설정 ("chrome", "chrome_mobile", "chrome_headless", "firefox", "firefox_headless")
-    browser_type = "chrome" # test browser를 여기서 정함
+    if os.getenv('CI'):
+        browser_type = "chrome_headless"
+    else:
+        browser_type = "chrome"
 
     # 1. 프로젝트 내 downloads 폴더의 절대 경로 생성 및 폴더가 없으면 자동 생성
     download_dir = os.path.abspath("./downloads")
