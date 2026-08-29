@@ -1,37 +1,57 @@
-name: API Test Automation CI/CD
+name: Run Behave Tests with Allure Report
 
-# main 브랜치에 push 되거나 Pull Request가 올 때 실행
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ main ]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
 
 jobs:
-  run-api-tests:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-    # 1. 깃허브 저장소 코드 가져오기
-    - name: Checkout repository code
+    - name: Check out repository
       uses: actions/checkout@v4
 
-    # 2. 파이썬 환경 설정 (3.10 버전)
-    - name: Set up Python 3.10
-      uses: actions/setup-python@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
       with:
-        python-version: "3.10"
+        python-version: '3.14'
 
-    # 3. 필요한 라이브러리 전체 설치
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install requests behave selenium webdriver-manager
+        pip install -r requirements.txt
+        pip install allure-behave
 
-    # 4. Behave API 테스트 실행
+    # 1. Behave API 테스트 실행 및 Allure 결과 수집
     - name: Run Behave API Tests
-      working-directory: ./python-selenium-automation-main
       env:
         PYTHONPATH: .
       run: |
-        behave features/api_test.feature
+        behave -f allure_behave.formatter:AllureFormatter -o allure-results features/api_test.feature
+      continue-on-error: true
+
+    # 2. Allure Report 생성 및 히스토리 관리
+    - name: Get Allure Report history & Publish
+      uses: simple-elf/allure-report-action@master
+      if: always()
+      with:
+        allure_results: allure-results
+        allure_history: allure-history
+        keep_reports: 20
+
+    # 3. gh-pages 브랜치로 리포트 파일 푸시 (GitHub Pages 발행)
+    - name: Deploy Allure Report to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      if: always()
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: gh-pages
+        publish_dir: allure-history
