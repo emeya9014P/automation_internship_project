@@ -30,12 +30,12 @@ jobs:
         pip install -r requirements.txt
         pip install allure-behave
 
-    # 1. Behave API 테스트 실행 및 Allure 결과 수집
-    - name: Run Behave API Tests
+  # 1. Behave 테스트 전체 실행 및 Allure 결과 수집
+    - name: Run Behave Tests
       env:
         PYTHONPATH: .
       run: |
-        behave -f allure_behave.formatter:AllureFormatter -o allure-results features/api_test.feature
+        behave -f allure_behave.formatter:AllureFormatter -o allure-results features
       continue-on-error: true
 
     # 2. Allure Report 생성 및 히스토리 관리
