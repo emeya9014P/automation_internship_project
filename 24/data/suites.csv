@@ -1,0 +1,5 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","430","Get user list vis Get request","","2026-08-29","passed","2026-08-29","","","",""
+"","320","Create a new user via POST request","","2026-08-29","passed","2026-08-29","","","",""
+"","334","Delete a user via DELETE request","","2026-08-29","passed","2026-08-29","","","",""
+"","319","Update existing user details via PUT request","","2026-08-29","passed","2026-08-29","","","",""
