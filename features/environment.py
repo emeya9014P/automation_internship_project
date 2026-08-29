@@ -1,12 +1,12 @@
 import os
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver import ActionChains
 
 # Page Objects Import
-from selenium.webdriver.chrome.options import Options
 from pages.product_search_page import ProductSearchPage
 from pages.off_plan_page import OffPlanPage
 from pages.iframe_page import IFramePage
@@ -96,13 +96,18 @@ def browser_init(context):
 
 
 def before_scenario(context, scenario):
-    print('\nStarted scenario: ', scenario.name)
+    chrome_options = Options()
 
-    # 'api' 태그가 들어간 시나리오/피처는 브라우저를 켜지 않음
-    if "api" in scenario.tags or "api" in scenario.feature.tags:
-        return
+    # GitHub Actions 환경을 위한 Headless 및 가상 창 크기 설정
+    chrome_options.add_argument("--headless=new")
+    chrome_options.add_argument("--window-size=1920,1080")
+    chrome_options.add_argument("--start-maximized")
+    chrome_options.add_argument("--disable-gpu")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
 
-    browser_init(context)
+    context.driver = webdriver.Chrome(options=chrome_options)
+    context.driver.implicitly_wait(10)
 
 
 def before_step(context, step):
