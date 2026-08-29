@@ -1,6 +1,6 @@
-Feature: Product Search on Google
+Feature: Test Scenarios for Search functionality
 
-  Scenario: User can search for products on Google
+  Scenario: User can search for a product
     Given Open Google page
     When Input Car into search field
     And Click on search icon

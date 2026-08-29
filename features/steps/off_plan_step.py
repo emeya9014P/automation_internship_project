@@ -18,7 +18,7 @@ def login_to_page(context):
     context.off_plan_page.login_to_page(username, password)
 
 
-@when("Click on the 'Off-plan' on the left side menu")
+@when("Click on the 'Off-plan' menu")
 def click_off_plan_menu(context):
     context.off_plan_page.click_off_plan_menu()
 
