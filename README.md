@@ -60,4 +60,4 @@ Automated RESTful API test suite built with Python's `requests` library to valid
 - **Headless Browser Execution**: Configured `features/environment.py` with environment detection (`os.getenv('CI')`) to automatically execute UI tests in `chrome_headless` mode within the CI server.
 - **Module & Path Resolution**: Resolved `ModuleNotFoundError` in isolated CI runners by configuring `PYTHONPATH` and dynamically inserting the project root into `sys.path`.
 - **Automated Regression Testing**: Ensured code quality and prevented regression defects by validating existing test suites on clean virtual runners before merging.
-
+- **Automated Test Reporting**: Generated and automatically deployed interactive Allure Test Reports to GitHub Pages to track test pass/fail metrics and execution history.
