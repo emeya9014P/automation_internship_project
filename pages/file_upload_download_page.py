@@ -1,5 +1,6 @@
 import os
 import time
+import config
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 
@@ -8,7 +9,7 @@ class FileUploadDownloadPage(BasePage):
     FILE_INPUT = (By.ID, "uploadFile")
 
     def open_the_webpage(self):
-        self.open_url("https://www.tutorialspoint.com/selenium/practice/upload-download.php")
+        self.open_url(config.TUTORIALSPOINT_URL)
 
     def click_download_button(self):
         self.click_element(self.DOWNLOAD_BUTTON)

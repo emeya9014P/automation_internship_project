@@ -1,15 +1,13 @@
+from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from behave import given, when, then
-from pages.dropdown_page import DropdownPage
+import config
 from pages.iframe_page import IFramePage
-from pages.window_handle_page import WindowHandlePage
 
-@given('Go to the-internet.herokuapp.com')
-def open_the_webpage(context):
-    context.driver.get("https://the-internet.herokuapp.com/")
-    context.dropdown_page = DropdownPage(context.driver)
+@given('Go to the-internet.herokuapp.com for iframe test')
+def open_webpage_for_iframe(context):
     context.iframe_page = IFramePage(context.driver)
-    context.window_handle_page = WindowHandlePage(context.driver)
+    context.iframe_page.open_webpage_for_iframe()
 
 
 @when('Click on the Frames')

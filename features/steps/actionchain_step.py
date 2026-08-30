@@ -1,4 +1,11 @@
 from behave import given, when, then
+from pages.actionchain_page import ActionChainPage
+
+@given('Go to the-internet.herokuapp.com for actionchain test')
+def open_webpage_for_actionchain(context):
+    context.actionchain_page = ActionChainPage(context.driver)
+    context.actionchain_page.open_webpage_for_actionchain()
+
 
 @when('Click on "{link}" link')
 def click_link(context, link):

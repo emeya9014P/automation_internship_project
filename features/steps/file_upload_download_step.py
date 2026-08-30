@@ -1,11 +1,13 @@
 import os
 from selenium.webdriver.common.by import By
 from behave import given, when, then
+from pages.file_upload_download_page import FileUploadDownloadPage
 from time import sleep
 
 @given('Go to the Tutorialspoint site')
 def open_the_webpage(context):
-    context.driver.get("https://www.tutorialspoint.com/selenium/practice/upload-download.php")
+    context.file_upload_download_page = FileUploadDownloadPage(context.driver)
+    context.file_upload_download_page.open_the_webpage()
 
 
 @when('Click on Download button')

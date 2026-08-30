@@ -1,3 +1,4 @@
+import config
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
@@ -5,6 +6,9 @@ from pages.base_page import BasePage
 class DropdownPage(BasePage):
     DROPDOWN_LINK = (By.CSS_SELECTOR, "a[href='/dropdown']")
     DROPDOWN_OPTION = (By.ID, "dropdown")
+
+    def open_webpage_for_dropdown(self):
+        self.open_url(config.HEROKU_URL)
 
     def click_dropdown_link(self):
         self.click_element(self.DROPDOWN_LINK)

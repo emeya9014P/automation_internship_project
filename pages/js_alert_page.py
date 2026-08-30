@@ -1,4 +1,5 @@
 from selenium import webdriver
+import config
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 
@@ -6,6 +7,9 @@ class JSAlertPage(BasePage):
     CLICK_FOR_JS_ALERT_BUTTON = (By.CSS_SELECTOR, "button[onclick='jsAlert()']")
     JAVASCRIPT_ALERT_LINK = (By.CSS_SELECTOR, "a[href='/javascript_alerts']")
     RESULT_TEXT = (By.CSS_SELECTOR, "#result")
+
+    def open_webpage_for_jsalert(self):
+        self.open_url(config.HEROKU_URL)
 
     def click_javascript_alerts_link(self):
         self.click_element(self.JAVASCRIPT_ALERT_LINK)

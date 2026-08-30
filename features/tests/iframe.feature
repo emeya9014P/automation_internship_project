@@ -1,7 +1,7 @@
 Feature: iframe handling on the-internet.herokuapp.com
 
   Scenario: User can switch to iframe and enter text
-    Given Go to the-internet.herokuapp.com
+    Given Go to the-internet.herokuapp.com for iframe test
     When Click on the Frames
     And Click on the iFrame
     Then Enter text "Hello iFrame!"

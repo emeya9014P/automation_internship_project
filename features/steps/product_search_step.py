@@ -6,7 +6,8 @@ from time import sleep
 
 @given('Open Google page')
 def open_google_page(context):
-    context.driver.get('https://www.google.com/')
+    context.product_search_page = ProductSearchPage(context.driver)
+    context.product_search_page.open_google_page()
 
 
 @when('Input {search_word} into search field')

@@ -4,7 +4,8 @@ from pages.off_plan_page import OffPlanPage
 
 @given('Open the main page')
 def open_testing_page(context):
-    context.driver.get("https://soft.reelly.io/sign-in")
+    context.off_plan_page = OffPlanPage(context.driver)
+    context.off_plan_page.open_testing_page()
 
 
 @when("Log in to the page")

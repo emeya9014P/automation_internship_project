@@ -1,3 +1,4 @@
+import config
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
@@ -8,6 +9,9 @@ class WindowHandlePage(BasePage):
     MULTIPLE_WINDOWS_LINK = (By.CSS_SELECTOR, "a[href='/windows']")
     NEW_WINDOW_TEXT = (By.XPATH, "//h3[text()='New Window']")
     ORIGINAL_WINDOW_HEADER= (By.XPATH, "//*[text()='Opening a new window']")
+
+    def open_webpage_window_handle(self):
+        self.open_url(config.HEROKU_URL)
 
     def click_multiple_windows_link(self):
         self.click_element(self.MULTIPLE_WINDOWS_LINK)

@@ -1,4 +1,5 @@
 from selenium import webdriver
+import config
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 
@@ -7,6 +8,9 @@ class ActionChainPage(BasePage):
     FIRST_USER_AVATAR = (By.CSS_SELECTOR, ".figure:nth-of-type(1)")
     VIEW_PROFILE_LINK = (By.CSS_SELECTOR, ".figure:nth-of-type(1) .figcaption a")
     NOT_FOUND_TEXT = (By.XPATH, "//*[text()='Not Found']")
+
+    def open_webpage_for_actionchain(self):
+        self.open_url(config.HEROKU_URL)
 
     def click_link(self, link):
         link_locator = (By.LINK_TEXT, link)

@@ -1,4 +1,11 @@
-from behave import when, then
+from behave import given, when, then
+from pages.js_alert_page import JSAlertPage
+
+@given('Go to the-internet.herokuapp.com for jsalert test')
+def open_webpage_for_jsalert(context):
+    context.js_alert_page = JSAlertPage(context.driver)
+    context.js_alert_page.open_webpage_for_jsalert()
+
 
 @when('Click on JavaScript Alerts link')
 def click_javascript_alerts_link(context):

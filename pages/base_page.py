@@ -39,9 +39,10 @@ class BasePage:
         self.wait.until(EC.number_of_windows_to_be(2))
         self.driver.switch_to.window(self.driver.window_handles[-1])
 
-    def switch_to_original_window(self):
-        self.driver.close()
-        self.driver.switch_to.window(self.original_window)
+    def switch_to_original_window(self, *args):
+        self.driver.close()  # 새 탭 닫기
+        self.driver.switch_to.window(
+            self.driver.window_handles[0])
 
     # Alert
     def accept_alert(self):

@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from pages.base_page import BasePage
+import config
 
 class ProductSearchPage(BasePage):
 
@@ -9,7 +10,7 @@ class ProductSearchPage(BasePage):
     PARTIAL_URL = "https://www.google.com/search?q=Car"
 
     def open_google_page(self):
-        self.open_url("https://www.google.com/")
+        self.open_url(config.GOOGLE_URL)
 
     def search_for_product(self, search_word):
         self.input_text(self.SEARCH_INPUT, search_word)

@@ -1,4 +1,5 @@
 from selenium import webdriver
+import config
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 
@@ -19,7 +20,7 @@ class OffPlanPage(BasePage):
 
 
     def open_testing_page(self):
-        self.open_url("https://soft.reelly.io/sign-in")
+        self.open_url(config.REELLY_SIGNIN_URL)
 
     def login_to_page(self, username, password):
         self.input_text(self.USERNAME_INPUT, username)
