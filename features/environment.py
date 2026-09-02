@@ -84,16 +84,6 @@ def browser_init(context):
     context.driver.implicitly_wait(4)
     context.wait = WebDriverWait(context.driver, 10)
 
-    # Page Objects 초기화
-    context.product_search_page = ProductSearchPage(context.driver)
-    context.off_plan_page = OffPlanPage(context.driver)
-    context.iframe_page = IFramePage(context.driver)
-    context.window_handle_page = WindowHandlePage(context.driver)
-    context.js_alert_page = JSAlertPage(context.driver)
-    context.dropdown_page = DropdownPage(context.driver)
-    context.actionchain_page = ActionChainPage(context.driver)
-    context.file_upload_download_page = FileUploadDownloadPage(context.driver)
-
 
 def before_scenario(context, scenario):
     chrome_options = Options()
@@ -109,6 +99,15 @@ def before_scenario(context, scenario):
     context.driver = webdriver.Chrome(options=chrome_options)
     context.driver.implicitly_wait(10)
 
+    # Page Objects 초기화
+    context.product_search_page = ProductSearchPage(context.driver)
+    context.off_plan_page = OffPlanPage(context.driver)
+    context.iframe_page = IFramePage(context.driver)
+    context.window_handle_page = WindowHandlePage(context.driver)
+    context.js_alert_page = JSAlertPage(context.driver)
+    context.dropdown_page = DropdownPage(context.driver)
+    context.actionchain_page = ActionChainPage(context.driver)
+    context.file_upload_download_page = FileUploadDownloadPage(context.driver)
 
 def before_step(context, step):
     print('\nStarted step: ', step)

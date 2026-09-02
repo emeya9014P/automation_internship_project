@@ -77,10 +77,12 @@ class BasePage:
         )
 
     def wait_until_clickable_click(self, locator):
-        self.wait.until(
-            EC.element_to_be_clickable(locator),
-            message=f"Element by {locator} not clickable"
-        ).click()
+        # 애니메이션 간섭을 우회하기 위해 presence 또는 visibility 대기 후 바로 JS 클릭 실행
+        element = self.wait.until(
+            EC.presence_of_element_located(locator),
+            message=f"Element by {locator} not found in DOM"
+        )
+        self.driver.execute_script("arguments[0].click();", element)
 
     def wait_until_appear(self, locator):
         self.wait.until(

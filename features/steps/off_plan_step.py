@@ -1,25 +1,13 @@
-import json
 from behave import given, when, then
 from pages.off_plan_page import OffPlanPage
 
-@given('Open the main page')
-def open_testing_page(context):
-    context.off_plan_page = OffPlanPage(context.driver)
-    context.off_plan_page.open_testing_page()
 
-
-@when("Log in to the page")
+@given("Log in to the page")
 def login_to_page(context):
-    with open('config.json', 'r') as f: # config.json 파일을 열어서 데이터를 읽어옴
-        config = json.load(f)
-
-    username = config['username']
-    password = config['password']
-
-    context.off_plan_page.login_to_page(username, password)
+    context.off_plan_page.login_to_page()
 
 
-@when("Click on the 'Off-plan' menu")
+@given("Click on the 'Off-plan' menu")
 def click_off_plan_menu(context):
     context.off_plan_page.click_off_plan_menu()
 
